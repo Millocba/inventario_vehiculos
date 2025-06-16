@@ -1,65 +1,75 @@
 # vista/vehiculo_vista.py
+import ttkbootstrap as tb
+from ttkbootstrap.constants import *
 
-import tkinter as tk
-from tkinter import ttk, messagebox
-
-class VehiculoVista(tk.Tk):
+class VehiculoVista(tb.Window):
     def __init__(self, controlador):
-        super().__init__()
-        self.title("Inventario de Vehículos")
-        self.geometry("700x500")
+        super().__init__(themename="darkly")
         self.controlador = controlador
+        self.title("Inventario de Vehículos")
+        self.geometry("800x600")
+        self.minsize(700, 500)
 
-        # Widgets de entrada
-        self.label_modelo = tk.Label(self, text="Modelo:")
-        self.entry_modelo = tk.Entry(self)
+        # Frame contenedor para orden
+        frame = tb.Frame(self, padding=15)
+        frame.pack(fill=BOTH, expand=YES)
 
-        self.label_anio = tk.Label(self, text="Año:")
-        self.entry_anio = tk.Entry(self)
+        # Etiquetas y Entrys / Combobox
+        self.label_modelo = tb.Label(frame, text="Modelo:", font=("Segoe UI", 11))
+        self.entry_modelo = tb.Entry(frame, font=("Segoe UI", 11))
 
-        self.label_color = tk.Label(self, text="Color:")
-        self.entry_color = tk.Entry(self)
+        self.label_anio = tb.Label(frame, text="Año:", font=("Segoe UI", 11))
+        self.entry_anio = tb.Entry(frame, font=("Segoe UI", 11))
 
-        self.label_marca = tk.Label(self, text="Marca:")
-        self.combobox_marca = ttk.Combobox(self, state="readonly")
+        self.label_color = tb.Label(frame, text="Color:", font=("Segoe UI", 11))
+        self.entry_color = tb.Entry(frame, font=("Segoe UI", 11))
 
-        # Botones
-        self.boton_agregar = tk.Button(self, text="Agregar", command=self.controlador.agregar_vehiculo)
-        self.boton_actualizar = tk.Button(self, text="Actualizar", command=self.controlador.actualizar_vehiculo)
-        self.boton_eliminar = tk.Button(self, text="Eliminar", command=self.controlador.eliminar_vehiculo)
-        self.boton_buscar = tk.Button(self, text="Buscar", command=self.controlador.buscar_vehiculo)
+        self.label_marca = tb.Label(frame, text="Marca:", font=("Segoe UI", 11))
+        self.combobox_marca = tb.Combobox(frame, state="readonly", font=("Segoe UI", 11))
+
+        # Botones con estilo bootstyle
+        self.boton_agregar = tb.Button(frame, text="Agregar", bootstyle="success-outline", command=self.controlador.agregar_vehiculo)
+        self.boton_actualizar = tb.Button(frame, text="Actualizar", bootstyle="warning-outline", command=self.controlador.actualizar_vehiculo)
+        self.boton_eliminar = tb.Button(frame, text="Eliminar", bootstyle="danger-outline", command=self.controlador.eliminar_vehiculo)
+        self.boton_buscar = tb.Button(frame, text="Buscar", bootstyle="info-outline", command=self.controlador.buscar_vehiculo)
 
         # Campo de búsqueda
-        self.entry_busqueda = tk.Entry(self)
+        self.entry_busqueda = tb.Entry(frame, font=("Segoe UI", 11))
 
-        # Tabla de resultados
-        self.tabla = ttk.Treeview(self, columns=("ID", "Modelo", "Año", "Color", "Marca"), show="headings")
+        # Tabla
+        self.tabla = tb.Treeview(frame, columns=("ID", "Modelo", "Año", "Color", "Marca"), show="headings", bootstyle="dark")
         for col in self.tabla["columns"]:
             self.tabla.heading(col, text=col)
+            self.tabla.column(col, anchor="center", width=120)
 
         self.tabla.bind("<<TreeviewSelect>>", self.controlador.seleccionar_fila)
 
-        # Posicionar widgets con grid
-        self.label_modelo.grid(row=0, column=0, sticky="e")
-        self.entry_modelo.grid(row=0, column=1)
+        # Layout con grid y paddings
+        self.label_modelo.grid(row=0, column=0, sticky="e", padx=5, pady=5)
+        self.entry_modelo.grid(row=0, column=1, sticky="ew", padx=5, pady=5)
 
-        self.label_anio.grid(row=1, column=0, sticky="e")
-        self.entry_anio.grid(row=1, column=1)
+        self.label_anio.grid(row=1, column=0, sticky="e", padx=5, pady=5)
+        self.entry_anio.grid(row=1, column=1, sticky="ew", padx=5, pady=5)
 
-        self.label_color.grid(row=2, column=0, sticky="e")
-        self.entry_color.grid(row=2, column=1)
+        self.label_color.grid(row=2, column=0, sticky="e", padx=5, pady=5)
+        self.entry_color.grid(row=2, column=1, sticky="ew", padx=5, pady=5)
 
-        self.label_marca.grid(row=3, column=0, sticky="e")
-        self.combobox_marca.grid(row=3, column=1)
+        self.label_marca.grid(row=3, column=0, sticky="e", padx=5, pady=5)
+        self.combobox_marca.grid(row=3, column=1, sticky="ew", padx=5, pady=5)
 
-        self.boton_agregar.grid(row=4, column=0, pady=10)
-        self.boton_actualizar.grid(row=4, column=1)
-        self.boton_eliminar.grid(row=4, column=2)
-        self.boton_buscar.grid(row=4, column=4)
-        self.entry_busqueda.grid(row=4, column=3)
+        self.boton_agregar.grid(row=4, column=0, sticky="ew", padx=5, pady=10)
+        self.boton_actualizar.grid(row=4, column=1, sticky="ew", padx=5, pady=10)
+        self.boton_eliminar.grid(row=4, column=2, sticky="ew", padx=5, pady=10)
 
-        self.tabla.grid(row=5, column=0, columnspan=5, padx=10, pady=20, sticky="nsew")
+        self.entry_busqueda.grid(row=4, column=3, sticky="ew", padx=5, pady=10)
+        self.boton_buscar.grid(row=4, column=4, sticky="ew", padx=5, pady=10)
 
-        # Expandir tabla con resize
-        self.grid_rowconfigure(5, weight=1)
-        self.grid_columnconfigure(1, weight=1)
+        self.tabla.grid(row=5, column=0, columnspan=5, sticky="nsew", padx=10, pady=10)
+
+        # Expansión para que tabla crezca al redimensionar
+        frame.grid_rowconfigure(5, weight=1)
+        for i in range(5):
+            frame.grid_columnconfigure(i, weight=1)
+
+        # Optional: Tooltip para botones (si querés te ayudo con esto también)
+

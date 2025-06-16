@@ -3,10 +3,12 @@
 from modelo.vehiculo_modelo import VehiculoModelo
 from modelo.marca_modelo import MarcaModelo
 from vista.vehiculo_vista import VehiculoVista
+import tkinter as tk
+from vista.vehiculo_vista import VehiculoVista
 
 class VehiculoControlador:
     def __init__(self):
-        self.vista = VehiculoVista(self)
+        self.vista = VehiculoVista(self)  # Solo se pasa el controlador
         self.marcas = {}
         self.vehiculo_id_seleccionado = None
         self.inicializar()
