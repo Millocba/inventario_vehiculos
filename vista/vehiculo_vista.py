@@ -4,7 +4,7 @@ from ttkbootstrap.constants import *
 
 class VehiculoVista(tb.Window):
     def __init__(self, controlador):
-        super().__init__(themename="darkly")
+        super().__init__(themename="superhero")
         self.controlador = controlador
         self.title("Inventario de Vehículos")
         self.geometry("800x600")
@@ -27,11 +27,11 @@ class VehiculoVista(tb.Window):
         self.label_marca = tb.Label(frame, text="Marca:", font=("Segoe UI", 11))
         self.combobox_marca = tb.Combobox(frame, state="readonly", font=("Segoe UI", 11))
 
-        # Botones con estilo bootstyle
+        # Botones
         self.boton_agregar = tb.Button(frame, text="Agregar", bootstyle="success-outline", command=self.controlador.agregar_vehiculo)
-        self.boton_actualizar = tb.Button(frame, text="Actualizar", bootstyle="warning-outline", command=self.controlador.actualizar_vehiculo)
-        self.boton_eliminar = tb.Button(frame, text="Eliminar", bootstyle="danger-outline", command=self.controlador.eliminar_vehiculo)
-        self.boton_buscar = tb.Button(frame, text="Buscar", bootstyle="info-outline", command=self.controlador.buscar_vehiculo)
+        self.boton_actualizar = tb.Button(frame, text="Actualizar", bootstyle="success-outline", command=self.controlador.actualizar_vehiculo)
+        self.boton_eliminar = tb.Button(frame, text="Eliminar", bootstyle="success-outline", command=self.controlador.eliminar_vehiculo)
+        self.boton_buscar = tb.Button(frame, text="Buscar", bootstyle="success-outline", command=self.controlador.buscar_vehiculo)
 
         # Campo de búsqueda
         self.entry_busqueda = tb.Entry(frame, font=("Segoe UI", 11))
@@ -70,6 +70,3 @@ class VehiculoVista(tb.Window):
         frame.grid_rowconfigure(5, weight=1)
         for i in range(5):
             frame.grid_columnconfigure(i, weight=1)
-
-        # Optional: Tooltip para botones (si querés te ayudo con esto también)
-

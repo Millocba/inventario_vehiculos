@@ -31,16 +31,5 @@ def crear_tablas():
         );
     """)
 
-    cursor.execute("""
-            CREATE TABLE IF NOT EXISTS venta (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                modelo TEXT NOT NULL,
-                anio INTEGER NOT NULL,
-                color TEXT NOT NULL,
-                marca_id INTEGER NOT NULL,
-                FOREIGN KEY (marca_id) REFERENCES marcas(id)
-            );
-        """)
-
     conexion.commit()
     conexion.close()
