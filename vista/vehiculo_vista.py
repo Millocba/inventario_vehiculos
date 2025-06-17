@@ -4,7 +4,7 @@ from ttkbootstrap.constants import BOTH, YES
 
 class VehiculoVista(tb.Window):
     def __init__(self, controlador):
-        super().__init__(themename="darkly")
+        super().__init__(themename="superhero")
         self.controlador = controlador
         self.title("Inventario de Vehículos")
         self.geometry("1000x700")
