@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6250283-d6dc-4e77-93f6-eca130f62d2e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base_datos/conexion.py" beforeDir="false" afterPath="$PROJECT_DIR$/base_datos/conexion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datos/inventario.db" beforeDir="false" afterPath="$PROJECT_DIR$/datos/inventario.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vista/vehiculo_vista.py" beforeDir="false" afterPath="$PROJECT_DIR$/vista/vehiculo_vista.py" afterDir="false" />
     </list>
@@ -27,6 +26,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "teoofinelli"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Millocba/inventario_vehiculos.git",
+    "accountId": "75a7efdd-1f35-4579-9821-abb64ec9b0ea"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
