@@ -76,14 +76,14 @@ class VehiculoModelo:
 
     # Actualizar vehículo por ID
     @staticmethod
-    def actualizar(vehiculo_id, anio, tipo_combustible_id, valor_estimado, color, dominio, estado_id, observaciones, ubicacion_fisica, kms, es_0km):
+    def actualizar(vehiculo_id, version_id, anio, tipo_combustible_id, valor_estimado, color, dominio, estado_id, observaciones, ubicacion_fisica, kms, es_0km):
         conexion = obtener_conexion()
         cursor = conexion.cursor()
         cursor.execute("""
             UPDATE vehiculos
-                       set anio = ?, tipo_combustible_id = ?, valor_estimado = ?, color = ?, dominio = ?, estado_id = ?, observaciones = ?, ubicacion_fisica = ?, kms = ?, es_0km = ?
+                       set version_id = ?, anio = ?, tipo_combustible_id = ?, valor_estimado = ?, color = ?, dominio = ?, estado_id = ?, observaciones = ?, ubicacion_fisica = ?, kms = ?, es_0km = ?
             WHERE id = ?
-        """, (anio, tipo_combustible_id, valor_estimado, color, dominio, estado_id, observaciones, ubicacion_fisica, kms, es_0km, vehiculo_id))
+        """, (version_id, anio, tipo_combustible_id, valor_estimado, color, dominio, estado_id, observaciones, ubicacion_fisica, kms, es_0km, vehiculo_id))
         conexion.commit()
         conexion.close()
 
