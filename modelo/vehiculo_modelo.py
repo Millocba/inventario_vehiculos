@@ -108,8 +108,10 @@ class VehiculoModelo:
             JOIN modelos ON versiones.modelo_id = modelos.id
             JOIN marcas ON modelos.marca_id = marcas.id
             JOIN tipos_combustible ON vehiculos.tipo_combustible_id = tipos_combustible.id
-            WHERE modelos.nombre LIKE ? OR vehiculos.color LIKE ?
-        """, (f"%{texto}%", f"%{texto}%"))
+            WHERE modelos.nombre LIKE ? OR vehiculos.color LIKE ? OR marcas.nombre LIKE ? OR modelos.nombre LIKE ? 
+            OR versiones.nombre LIKE ? OR vehiculos.dominio LIKE ? OR vehiculos.anio LIKE ? OR tipos_combustible.nombre LIKE ?
+        """, (f"%{texto}%", f"%{texto}%", f"%{texto}%", f"%{texto}%", f"%{texto}%", f"%{texto}%", f"%{texto}%", f"%{texto.upper()}%"))
+
         resultado = cursor.fetchall()
         conexion.close()
         return resultado
@@ -131,3 +133,4 @@ class VehiculoModelo:
         vehiculos = cursor.fetchall()
         conexion.close()
         return vehiculos
+   
