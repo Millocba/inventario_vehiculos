@@ -55,7 +55,7 @@ class VehiculoControlador:
             color = self.vista.entry_color.get()
             dominio = self.vista.entry_dominio.get()
             ubicacion = self.vista.entry_ubicacion.get()
-            observaciones = self.vista.entry_observaciones.get()
+            observaciones = self.vista.entry_observaciones.get("1.0", "end-1c").strip()
             kms = self.vista.entry_kms.get()
             valor_estimado = self.vista.entry_valor.get()
             combustible_nombre = self.vista.combobox_combustible.get()
@@ -110,7 +110,7 @@ class VehiculoControlador:
         color = self.vista.entry_color.get()
         dominio = self.vista.entry_dominio.get()
         ubicacion = self.vista.entry_ubicacion.get()
-        observaciones = self.vista.entry_observaciones.get()
+        observaciones = self.vista.entry_observaciones.get("1.0", "end-1c").strip()
         kms = self.vista.entry_kms.get()
         valor_estimado = self.vista.entry_valor.get()
         combustible_nombre = self.vista.combobox_combustible.get()
@@ -216,8 +216,8 @@ class VehiculoControlador:
 
         self.vista.combobox_estado.set(estado)
 
-        self.vista.entry_observaciones.delete(0, "end")
-        self.vista.entry_observaciones.insert(0, observaciones if observaciones else "")
+        self.vista.entry_observaciones.delete(1.0, "end")
+        self.vista.entry_observaciones.insert(1.0, observaciones if observaciones else "")
 
         self.vista.entry_ubicacion.delete(0, "end")
         self.vista.entry_ubicacion.insert(0, ubicacion if ubicacion else "")
@@ -226,6 +226,12 @@ class VehiculoControlador:
         self.vista.entry_kms.insert(0, kms if kms is not None else "")
 
         self.vista.check_0km_var.set(es_0km or 0)
+        # Actualizar el estado del botón de eliminar
+        self.vista.boton_eliminar.configure(state="normal")
+        # Actualizar el estado del botón de actualizar
+        self.vista.boton_actualizar.configure(state="normal")
+        # deshabilitar el botón de agregar
+        self.vista.boton_agregar.configure(state="disabled")
 
     # Llena la tabla con los datos recibidos
     def mostrar_tabla(self, datos):
@@ -245,12 +251,18 @@ class VehiculoControlador:
         self.vista.entry_ubicacion.delete(0, "end")
         self.vista.entry_valor.delete(0, "end")
         self.vista.entry_kms.delete(0, "end")
-        self.vista.entry_observaciones.delete(0, "end")
+        self.vista.entry_observaciones.delete(1.0, "end")
         self.vista.combobox_combustible.set("")
         self.vista.combobox_estado.set("")
         self.vista.check_0km_var.set(1)
         self.vista.entry_busqueda.delete(0, "end")
         self.vehiculo_id_seleccionado = None
+
+        # Deshabilitar botones de agregar, actualizar y eliminar
+        self.vista.boton_actualizar.configure(state="disabled")
+        self.vista.boton_eliminar.configure(state="disabled")
+        self.vista.boton_agregar.configure(state="disabled")
+
 
 
     # Consulta a la API de ACARA para cargar los modelos de la marca seleccionada
